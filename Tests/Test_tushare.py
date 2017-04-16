@@ -93,8 +93,9 @@ def SaveRealTimeQuotes():
 			with open('./' + str(datetimeCN.date()) + '/' + 'LOG' + stock + '.log','a') as fd:
 				fd.write('No data available at ' + datetimeCN.strftime("%y-%m-%d %h:%m:%s") + '\n')
 	else:
-		print('Not working hour')
-		sys.exit()
+		print(str(datetimeCN.time()) + ' is not within working hour!')
+		if (datetimeCN.time() > aend):
+			sys.exit()
 		
 	# skip time
 	tend = time.time()
@@ -116,6 +117,9 @@ while True:
 #plot.ylabel('Price')
 #plot.legend('Open','Close')
 #plot.show()
+
+
+
 
 
 
