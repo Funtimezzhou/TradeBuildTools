@@ -119,9 +119,6 @@ while True:
 
 
 
-
-
-
 # save data to path
 #df.to_csv('H:/Repository/trade/Data/000875.csv',columns=['open','high','low','close'])
 
