@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
+#This function is to grab real time data and save the data into csv file
 #
-#Created on Thu Apr  6 23:07:11 2017
-#
-#@author: sqfellow
+#@author: Junqiang Zhou, April 2017
 #
 
 #python -m pdb .py
@@ -81,17 +79,25 @@ def SaveRealTimeQuotes():
 				# #print(list(real_quote))
 				# #print(real_quote['price'].values)
 				
-				file_path = './' + str(datetimeCN.date())
+				file_path = '../Daily Data/' + str(datetimeCN.date())
 				#print(file_path)
 				if not os.path.exists(file_path):
 				   os.makedirs(file_path)
 				   
 				# save to csv
-				with open('./' + str(datetimeCN.date()) + '/' + stock+'.csv','a') as fd:
-					real_quote.to_csv(fd,header = False)
+				fname = '../Daily Data/' + str(datetimeCN.date()) + '/' + stock + '.csv'
+				if os.path.exists(fname):
+					with open(fname,'a') as fd:
+						real_quote.to_csv(fd,header = False)
+				else:
+					with open(fname,'a') as fd:
+						real_quote.to_csv(fd,header = True)
+					
+				
 		except:
-			with open('./' + str(datetimeCN.date()) + '/' + 'LOG' + stock + '.log','a') as fd:
-				fd.write('No data available at ' + datetimeCN.strftime("%y-%m-%d %h:%m:%s") + '\n')
+			logname = '../Daily Data/' + str(datetimeCN.date()) + '/' + 'LOG' + stock + '.log'
+			with open(logname,'a') as fd:
+				fd.write('No data available at ' + str(datetimeCN.time()) + '\n')
 	else:
 		print(str(datetimeCN.time()) + ' is not within working hour!')
 		if (datetimeCN.time() > aend):
