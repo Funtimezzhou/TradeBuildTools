@@ -16,7 +16,8 @@ List = ['600009', '600012', '600017', '600018', '600020', '600027', '600029', '6
 		'601111', '601139', '601158', '601186', '601188', '601199', '601212', '601333', '601368', '601518', '601669', '601800', '601880', '601985', \
 		'601991', '601999', '603032', '603393', '603421', '603588', '603689', '603817', '603843', '900903', '900937', '900938', '900945', '900948', \
 		'601228', '002108', '600481', '300409', '002154', '000718', '600759' ]
-
+Date  = '2017-04-24'
+	
 # /***************************************************************/
 # /***************************************************************/
 # /***************************************************************/
@@ -24,10 +25,9 @@ List = ['600009', '600012', '600017', '600018', '600020', '600027', '600029', '6
 avgrate = [0]*len(List)
 for idxstock in range(len(List)):
 	stock = List[idxstock]
-	#print('Stock is ' + stock)
+	print('Stock is ' + stock)
 	
 	# load stock data
-	Date  = '2017-04-20'
 	fname = '../Daily Data/' + Date + '/' + stock + '.csv'
 	colnames = ['price', 'bid', 'ask', 'volume', 'amount']
 	stockdata = pandas.read_csv(fname, encoding = "ISO-8859-1")
@@ -57,7 +57,7 @@ for idxstock in range(len(List)):
 # find stock with largest rate
 sort_idx = numpy.argsort(avgrate)[::-1]
 avgrate.sort(reverse = True)
-# print(sort_idx)
+# print(avgrate)
 for i in range(5):
 	print("Rate Rank: Value=%f, Stock=%s" %(avgrate[i],List[sort_idx[i]]) )
 # /***************************************************************/
@@ -74,7 +74,6 @@ for i in range(5):
 for imaxrate in range(5):
 	stock = List[sort_idx[imaxrate]]
 	# load stock data
-	Date  = '2017-04-20'
 	fname = '../Daily Data/' + Date + '/' + stock + '.csv'
 	colnames = ['price', 'bid', 'ask', 'volume', 'amount']
 	stockdata = pandas.read_csv(fname, encoding = "ISO-8859-1")
