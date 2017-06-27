@@ -1,6 +1,7 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
 
 # import system module
 import pandas_datareader.data as web
@@ -9,15 +10,23 @@ import matplotlib.pyplot as plt
 import pandas as pd
 # import user-defined module
 import sys
-sys.path.append('..\lib')
+sys.path.append('../lib')
 import datatool
+
+
+"""
+Part0 - Obtain ticker symbols from S&P 500
+"""
+# Define the instruments to download. We would like to see Apple, Microsoft and the S&P500 index.
+symbols = datatool.obtain_parse_wiki_snp500()
+tickers = []  #tickers = ['AAPL', 'MSFT']
+for i in range( len(symbols) ):
+  stock = symbols[i][0].encode("utf-8")
+  tickers.append( stock )
 
 """
 Part 1 - Get history data and save to CSV file
 """
-
-# Define the instruments to download. We would like to see Apple, Microsoft and the S&P500 index.
-tickers = ['AAPL', 'MSFT']
 
 # We would like all available data from 01/01/2000 until 12/31/2016.
 start_date = '2000-01-01'
