@@ -10,6 +10,9 @@ import datetime
 import pandas as pd
 from sklearn.qda import QDA
 
+import sys
+sys.path.append('..\lib')
+
 from strategy import Strategy
 from event import SignalEvent
 from backtest import Backtest
@@ -97,8 +100,8 @@ class SPYDailyForecastStrategy(Strategy):
 
 
 if __name__ == "__main__":
-    csv_dir = '/path/to/your/csv/file'  # CHANGE THIS!
-    symbol_list = ['SPY']
+    csv_dir = '../Data/History Data'  # CHANGE THIS!
+    symbol_list = ['AAPL']
     initial_capital = 100000.0
     heartbeat = 0.0
     start_date = datetime.datetime(2006,1,3)

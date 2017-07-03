@@ -100,7 +100,7 @@ class MovingAverageCrossStrategy(Strategy):
 
 if __name__ == "__main__":
     csv_dir = '../Data/History Data'  # CHANGE THIS!
-    symbol_list = ['MSFT']
+    symbol_list = ['MTB']
     initial_capital = 100000.0
     heartbeat = 0.0
     start_date = datetime.datetime(2001, 07, 30, 0, 0, 0)
