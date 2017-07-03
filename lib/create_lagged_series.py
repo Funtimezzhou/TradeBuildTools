@@ -7,8 +7,8 @@ import datetime
 
 import numpy as np
 import pandas as pd
-from pandas.io.data import DataReader
-
+# from pandas.io.data import DataReader
+import pandas_datareader.data as web
 
 def create_lagged_series(symbol, start_date, end_date, lags=5):
     """
@@ -21,11 +21,13 @@ def create_lagged_series(symbol, start_date, end_date, lags=5):
     """
 
     # Obtain stock information from Yahoo Finance
-    ts = DataReader(
-    	symbol, "yahoo", 
+    ts = web.get_data_google(
+    	symbol, 
     	start_date-datetime.timedelta(days=365), 
     	end_date
     )
+    if 'Adj Close' not in ts:
+      ts.loc['Adj Close',:,:] = ts['Close']
 
     # Create the new lagged DataFrame
     tslag = pd.DataFrame(index=ts.index)

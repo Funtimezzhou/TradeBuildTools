@@ -19,10 +19,11 @@ Part0 - Obtain ticker symbols from S&P 500
 """
 # Define the instruments to download. We would like to see Apple, Microsoft and the S&P500 index.
 symbols = datatool.obtain_parse_wiki_snp500()
-tickers = []  #tickers = ['AAPL', 'MSFT']
+tickers = []  
 for i in range( len(symbols) ):
   stock = symbols[i][0].encode("utf-8")
   tickers.append( stock )
+# tickers = ['AAPL', 'MSFT']
 
 """
 Part 1 - Get history data and save to CSV file
